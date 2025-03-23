@@ -1,0 +1,27 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: customer-service
+  datasource:
+    username: pguser
+    password: password
+    url: jdbc:postgresql://localhost:5432/customer
+  jpa:
+    hibernate:
+#      ddl-auto: create-drop #for testing, will create tables while starting app and drops everything while stopping app
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format-sql: true
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+    enabled: true
