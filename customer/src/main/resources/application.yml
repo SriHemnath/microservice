@@ -8,6 +8,8 @@ spring:
     username: pguser
     password: password
     url: jdbc:postgresql://localhost:5432/customer
+  profiles:
+    active: default
   jpa:
     hibernate:
 #      ddl-auto: create-drop #for testing, will create tables while starting app and drops everything while stopping app
@@ -17,6 +19,11 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format-sql: true
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
 
 eureka:
   client:

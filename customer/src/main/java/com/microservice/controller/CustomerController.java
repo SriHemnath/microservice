@@ -4,6 +4,7 @@ import com.microservice.model.CustomerRegistrationRequest;
 import com.microservice.model.CustomerRegistrationResponse;
 import com.microservice.service.CustomerService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/customer")
 @AllArgsConstructor
+@Slf4j
 public class CustomerController {
 
     @Autowired
@@ -24,7 +26,7 @@ public class CustomerController {
 
     @PostMapping("/create")
     public ResponseEntity<CustomerRegistrationResponse> registerCustomer(@RequestBody CustomerRegistrationRequest request){
-        System.out.println("received registration request "+request);
+        log.info("received registration request "+request);
         Integer id = customerService.registerCustomer(request);
         return new ResponseEntity<>(new CustomerRegistrationResponse(id),HttpStatus.CREATED);
     }
