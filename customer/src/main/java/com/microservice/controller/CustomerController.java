@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/customer")
+@RequestMapping("/customer")
 @AllArgsConstructor
 @Slf4j
 public class CustomerController {
@@ -24,7 +24,7 @@ public class CustomerController {
         return new ResponseEntity<>("pong", HttpStatus.OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/v1/create")
     public ResponseEntity<CustomerRegistrationResponse> registerCustomer(@RequestBody CustomerRegistrationRequest request){
         log.info("received registration request "+request);
         Integer id = customerService.registerCustomer(request);

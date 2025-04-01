@@ -5,12 +5,14 @@ spring:
   application:
     name: api-gateway
   cloud:
+    discovery:
+      enabled: true
     gateway:
       routes:
         - id: customer
-          uri: lb://CUSTOMER
+          uri: lb://CUSTOMER-SERVICE
           predicates:
-            - Path=/api/v1/customers/**
+            - Path=/customer/**
 
 management:
   tracing:
@@ -19,7 +21,7 @@ management:
 
 eureka:
   client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
     fetch-registry: true
     register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
